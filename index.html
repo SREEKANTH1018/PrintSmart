@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrintSmart – Skip the Queue</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>Upload. Pay. Print. Collect – No Queue.</h1>
+            <a href="/upload" class="btn">Upload File</a>
+            <a href="/tracking" class="btn">Track Order</a>
+        </div>
+        <div class="card">
+            <h2>How It Works</h2>
+            <p>Upload → Pay → Print → Collect</p>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
