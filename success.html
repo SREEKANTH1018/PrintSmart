@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PrintSmart - Success</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Payment Successful!</h1>
+    <p>Your Order ID: <strong>{{ order.id }}</strong></p>
+    <p>Show this ID or QR code at the shop to collect your prints.</p>
+    <img src="{{ url_for('qr_file', filename=order.qr_code_path) }}" alt="QR Code">
+</body>
+</html>
