@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PrintSmart - Admin</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    </style>
+</head>
+<body>
+    <h1>Admin Panel - Paid Orders</h1>
+    <table>
+        <tr>
+            <th>Order ID</th>
+            <th>File</th>
+            <th>Copies</th>
+            <th>Type</th>
+            <th>Price</th>
+            <th>QR Code</th>
+        </tr>
+        {% for order in orders %}
+        <tr>
+            <td>{{ order.id }}</td>
+            <td><a href="{{ url_for('uploaded_file', filename=order.filename) }}">{{ order.filename }}</a></td>
+            <td>{{ order.copies }}</td>
+            <td>{% if order.color %}Color{% else %}Black-White{% endif %}</td>
+            <td>₹{{ order.price }}</td>
+            <td><img src="{{ url_for('qr_file', filename=order.qr_code_path) }}" width="50" alt="QR"></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
