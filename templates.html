@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2>Payment</h2>
+            <p>Total: ₹{{ order.price }}</p>
+            <form method="post">
+                <div class="form-group">
+                    <input type="text" placeholder="Card Number" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Expiry Date" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="CVV" required>
+                </div>
+                <p>Or pay via UPI (simulated)</p>
+                <button type="submit" class="btn">Pay Now</button>
+            </form>
+        </div>
+        <!-- Success Modal (shown after payment) -->
+        <div id="success-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center;">
+            <div class="card" style="text-align: center;">
+                <h2>Payment Successful!</h2>
+                <p>Order ID: {{ order_id }}</p>
+                <img src="{{ url_for('qr_code', filename=order.qr) }}" alt="QR Code">
+                <p>Estimated Ready Time: 30 minutes</p>
+                <a href="/tracking" class="btn">Track Order</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Simulate loading and show success
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            document.querySelector('.card').innerHTML = '<div class="progress-bar"><div class="progress-fill"></div></div><p>Processing Payment...</p>';
+            setTimeout(() => {
+                document.getElementById('success-modal').style.display = 'flex';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
