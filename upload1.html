@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2>Upload Your File</h2>
+            <div id="drop-zone" style="border: 2px dashed #00ffff; padding: 50px; text-align: center;">
+                Drag & Drop PDF, DOCX, or Image here
+                <input type="file" id="file-input" name="file" accept=".pdf,.docx,.jpg,.png" required>
+            </div>
+            <p id="file-name"></p>
+            <p id="file-size"></p>
+            <form method="post" enctype="multipart/form-data">
+                <input type="hidden" name="file" id="hidden-file">
+                <label>Copies: <input type="number" id="copies" name="copies" value="1" min="1"></label>
+                <label><input type="checkbox" id="color" name="color"> Color</label>
+                <label>Side: <select id="sides" name="sides"><option value="single">Single</option><option value="double">Double</option></select></label>
+                <p>Price: <span id="price">₹1.00</span></p>
+                <button type="submit" class="btn">Proceed to Payment</button>
+            </form>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
