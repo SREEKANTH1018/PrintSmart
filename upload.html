@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PrintSmart - Upload</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        form { max-width: 400px; }
+        input, button { display: block; margin: 10px 0; }
+        #price { font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>PrintSmart - Upload Your File</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <label for="file">Select File (PDF, DOCX, PNG, JPG):</label>
+        <input type="file" name="file" id="file" required>
+        
+        <label for="copies">Number of Copies:</label>
+        <input type="number" name="copies" id="copies" min="1" value="1" required>
+        
+        <label>
+            <input type="checkbox" name="color" id="color"> Color Printing (₹10/copy, else ₹2/copy)
+        </label>
+        
+        <p>Total Price: ₹<span id="price">2</span></p>
+        
+        <button type="submit">Upload and Proceed to Payment</button>
+    </form>
+    
+    <script>
+        const copiesInput = document.getElementById('copies');
+        const colorCheckbox = document.getElementById('color');
+        const priceSpan = document.getElementById('price');
+        
+        function updatePrice() {
+            const copies = parseInt(copiesInput.value) || 1;
+            const isColor = colorCheckbox.checked;
+            const pricePerCopy = isColor ? 10 : 2;
+            priceSpan.textContent = (copies * pricePerCopy).toFixed(2);
+        }
+        
+        copiesInput.addEventListener('input', updatePrice);
+        colorCheckbox.addEventListener('change', updatePrice);
+    </script>
+</body>
+</html>
