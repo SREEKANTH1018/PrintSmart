@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2>Orders</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>File Name</th>
+                        <th>Copies</th>
+                        <th>Color/BW</th>
+                        <th>Payment Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for oid, order in orders.items() %}
+                    <tr>
+                        <td>{{ oid }}</td>
+                        <td>{{ order.file }}</td>
+                        <td>{{ order.copies }}</td>
+                        <td>{{ 'Color' if order.color else 'BW' }}</td>
+                        <td>{{ order.status }}</td>
+                        <td><a href="/admin/mark_printed/{{ oid }}" class="btn-admin">Mark as Printed</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+</body>
+</html>
