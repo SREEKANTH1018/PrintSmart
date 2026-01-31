@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PrintSmart - Payment</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        form { max-width: 400px; }
+    </style>
+</head>
+<body>
+    <h1>Payment for Order {{ order.id }}</h1>
+    <p>File: {{ order.filename }}</p>
+    <p>Copies: {{ order.copies }}</p>
+    <p>Type: {% if order.color %}Color{% else %}Black-White{% endif %}</p>
+    <p>Total: ₹{{ order.price }}</p>
+    
+    <form action="/pay/{{ order.id }}" method="post">
+        <label for="payment_method">Payment Method:</label>
+        <select name="payment_method" id="payment_method" required>
+            <option value="upi">UPI</option>
+            <option value="card">Card</option>
+        </select>
+        <button type="submit">Pay Now</button>
+    </form>
+</body>
+</html>
