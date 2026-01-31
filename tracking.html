@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Tracking</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2>Your Orders</h2>
+            {% for order in orders %}
+            <div>
+                <p>Order ID: {{ loop.index }}</p>
+                <p>Status: {{ order.status }}</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: {% if order.status == 'Uploaded' %}25%{% elif order.status == 'Paid' %}50%{% elif order.status == 'Printing' %}75%{% else %}100%{% endif %}"></div>
+                </div>
+                <p>Uploaded → Paid → Printing → Ready for Pickup</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
